@@ -31,6 +31,7 @@ import (
 	"github.com/rclone/rclone/vfs/vfscommon"
 	"github.com/rclone/rclone/vfs/vfsflags"
 	"github.com/spf13/cobra"
+	"github.com/wlynxg/anet"
 )
 
 // OptionsInfo descripts the Options in use
@@ -465,7 +466,8 @@ func (s *server) ssdpInterface(intf net.Interface) {
 		return url.String()
 	}
 
-	_, err := intf.Addrs()
+	// _, err := intf.Addrs()
+	_, err := anet.InterfaceAddrsByInterface(&intf)
 	if err != nil {
 		panic(err)
 	}

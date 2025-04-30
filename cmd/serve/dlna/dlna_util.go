@@ -16,6 +16,7 @@ import (
 	"github.com/anacrolix/dms/soap"
 	"github.com/anacrolix/dms/upnp"
 	"github.com/rclone/rclone/fs"
+	"github.com/wlynxg/anet"
 )
 
 // Return a default "friendly name" for the server.
@@ -40,7 +41,8 @@ func makeDeviceUUID(unique string) string {
 
 // Get all available active network interfaces.
 func listInterfaces() []net.Interface {
-	ifs, err := net.Interfaces()
+	// ifs, err := net.Interfaces()
+	ifs, err := anet.Interfaces()
 	if err != nil {
 		fs.Logf(nil, "list network interfaces: %v", err)
 		return []net.Interface{}
